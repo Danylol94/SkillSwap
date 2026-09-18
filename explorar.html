@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Explorar Usuarios - SkillSwap</title>
+
+    <link rel="stylesheet" href="css/explorar.css">
+</head>
+<body>
+
+    <header class="navbar">
+        <h1>SkillSwap</h1>
+
+        <div class="menu">
+            <a href="perfil.html">Mi Perfil</a>
+            <a href="index.html">Inicio</a>
+        </div>
+    </header>
+
+    <section class="hero">
+
+        <h2>Encuentra personas para intercambiar habilidades</h2>
+
+        <p>
+            Busca expertos, conecta y aprende nuevas habilidades.
+        </p>
+
+        <div class="search-box">
+
+            <input
+                type="text"
+                id="busqueda"
+                placeholder="Ej: Python, Inglés, Diseño..."
+            >
+
+            <button onclick="buscarUsuarios()">
+                Buscar
+            </button>
+
+        </div>
+
+    </section>
+
+    <section>
+
+        <div
+            id="resultados"
+            class="resultados"
+        ></div>
+
+    </section>
+
+    <script src="js/explorar.js"></script>
+
+</body>
+</html>

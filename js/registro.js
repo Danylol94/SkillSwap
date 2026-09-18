@@ -46,11 +46,16 @@ form.addEventListener("submit", function(e){
         return;
     }
 
-    usuarios.push({
-        nombre,
-        email,
-        password
-    });
+    const nuevoUsuario = {
+    nombre,
+    email,
+    password,
+    bio: "",
+    habilidadesEnsenar: [],
+    habilidadesAprender: []
+};
+
+usuarios.push(nuevoUsuario);
 
     localStorage.setItem(
         "usuarios",

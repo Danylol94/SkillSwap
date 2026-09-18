@@ -14,9 +14,16 @@
         <div class="perfil-card">
 
             <img
+                id="fotoPerfil"
                 src="https://via.placeholder.com/150"
                 alt="Foto de perfil"
                 class="foto-perfil"
+            >
+
+            <input
+                type="file"
+                id="fotoInput"
+                accept="image/*"
             >
 
             <h1 id="nombreUsuario"></h1>
@@ -27,6 +34,10 @@
                 id="bio"
                 placeholder="Cuéntanos sobre ti..."
             ></textarea>
+
+            <button onclick="guardarPerfil()">
+                 Guardar Perfil
+            </button>
 
             <h3>Habilidades que enseño</h3>
 
@@ -55,6 +66,14 @@
             </button>
 
             <ul id="listaAprender"></ul>
+
+            <button
+                    onclick="
+                    window.location.href=
+                    'explorar.html'
+                    ">
+                    Explorar Usuarios
+            </button>
 
             <button
                 class="logout"

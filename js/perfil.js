@@ -21,6 +21,9 @@ document.getElementById(
 ).textContent =
 usuario.email;
 
+document.getElementById("bio").value =
+usuario.bio || "";
+
 function agregarHabilidadEnsenar(){
 
     const input =
@@ -28,20 +31,13 @@ function agregarHabilidadEnsenar(){
         "habilidadEnsenar"
     );
 
-    const lista =
-    document.getElementById(
-        "listaEnsenar"
-    );
-
     if(input.value === "") return;
 
-    const li =
-    document.createElement("li");
+    usuario.habilidadesEnsenar.push(
+        input.value
+    );
 
-    li.textContent =
-    input.value;
-
-    lista.appendChild(li);
+    cargarHabilidades();
 
     input.value = "";
 }
@@ -53,23 +49,51 @@ function agregarHabilidadAprender(){
         "habilidadAprender"
     );
 
-    const lista =
-    document.getElementById(
-        "listaAprender"
-    );
-
     if(input.value === "") return;
 
-    const li =
-    document.createElement("li");
+    usuario.habilidadesAprender.push(
+        input.value
+    );
 
-    li.textContent =
-    input.value;
-
-    lista.appendChild(li);
+    cargarHabilidades();
 
     input.value = "";
 }
+
+function cargarHabilidades(){
+
+    const listaEnsenar =
+    document.getElementById("listaEnsenar");
+
+    const listaAprender =
+    document.getElementById("listaAprender");
+
+    listaEnsenar.innerHTML = "";
+    listaAprender.innerHTML = "";
+
+    usuario.habilidadesEnsenar.forEach(habilidad => {
+
+        const li =
+        document.createElement("li");
+
+        li.textContent = habilidad;
+
+        listaEnsenar.appendChild(li);
+    });
+
+    usuario.habilidadesAprender.forEach(habilidad => {
+
+        const li =
+        document.createElement("li");
+
+        li.textContent = habilidad;
+
+        listaAprender.appendChild(li);
+    });
+
+}
+
+cargarHabilidades();
 
 function cerrarSesion(){
 
@@ -79,4 +103,78 @@ function cerrarSesion(){
 
     window.location.href =
     "login.html";
+}
+
+function guardarPerfil(){
+
+    usuario.bio =
+    document.getElementById("bio").value;
+
+    let usuarios =
+    JSON.parse(
+        localStorage.getItem("usuarios")
+    ) || [];
+
+    const indice =
+    usuarios.findIndex(
+        u => u.email === usuario.email
+    );
+
+    usuarios[indice] = usuario;
+
+    localStorage.setItem(
+        "usuarios",
+        JSON.stringify(usuarios)
+    );
+
+    localStorage.setItem(
+        "usuarioLogueado",
+        JSON.stringify(usuario)
+    );
+
+    alert(
+        "Perfil guardado correctamente"
+    );
+}
+
+document
+.getElementById("fotoInput")
+.addEventListener(
+    "change",
+    cargarFoto
+);
+
+function cargarFoto(event){
+
+    const archivo =
+    event.target.files[0];
+
+    if(!archivo) return;
+
+    const reader =
+    new FileReader();
+
+    reader.onload = function(e){
+
+        const imagenBase64 =
+        e.target.result;
+
+        document.getElementById(
+            "fotoPerfil"
+        ).src = imagenBase64;
+
+        usuario.foto =
+        imagenBase64;
+    };
+
+    reader.readAsDataURL(
+        archivo
+    );
+}
+
+if(usuario.foto){
+
+    document.getElementById(
+        "fotoPerfil"
+    ).src = usuario.foto;
 }
