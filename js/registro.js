@@ -36,24 +36,6 @@ form.addEventListener("submit", function(e){
     JSON.parse(localStorage.getItem("usuarios"))
     || [];
 
-    //bloque agegado
-    let usuarios =
-    JSON.parse(
-    localStorage.getItem("usuarios")
-    ) || [];
-
-    usuarios.push({
-    nombre,
-    email,
-    password
-    });
-
-    localStorage.setItem(
-    "usuarios",
-    JSON.stringify(usuarios)
-    );
-    //termina
-
     const existeUsuario =
     usuarios.find(
         usuario => usuario.email === email

@@ -11,35 +11,36 @@ form.addEventListener("submit", function(e){
     const password =
     document.getElementById("password").value;
 
+    if(email === "" || password === ""){
+        alert("Todos los campos son obligatorios");
+        return;
+    }
+
     const usuarios =
     JSON.parse(
         localStorage.getItem("usuarios")
     ) || [];
 
-    const usuario =
+    const usuarioEncontrado =
     usuarios.find(
-        u =>
-        u.email === email &&
-        u.password === password
+        usuario =>
+        usuario.email === email &&
+        usuario.password === password
     );
 
-    if(!usuario){
-
-        alert(
-            "Correo o contraseña incorrectos"
-        );
-
+    if(!usuarioEncontrado){
+        alert("Correo o contraseña incorrectos");
         return;
     }
 
     localStorage.setItem(
         "usuarioLogueado",
-        JSON.stringify(usuario)
+        JSON.stringify(usuarioEncontrado)
     );
 
     alert(
         "Bienvenido " +
-        usuario.nombre
+        usuarioEncontrado.nombre
     );
 
     window.location.href =

@@ -2,16 +2,70 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <title>Perfil</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Perfil - SkillSwap</title>
+
+    <link rel="stylesheet" href="css/perfil.css">
 </head>
 <body>
 
-    <h1 id="nombreUsuario"></h1>
-    <p id="correoUsuario"></p>
+    <div class="perfil-container">
 
-    <button onclick="cerrarSesion()">
-        Cerrar sesión
-    </button>
+        <div class="perfil-card">
+
+            <img
+                src="https://via.placeholder.com/150"
+                alt="Foto de perfil"
+                class="foto-perfil"
+            >
+
+            <h1 id="nombreUsuario"></h1>
+
+            <p id="correoUsuario"></p>
+
+            <textarea
+                id="bio"
+                placeholder="Cuéntanos sobre ti..."
+            ></textarea>
+
+            <h3>Habilidades que enseño</h3>
+
+            <input
+                type="text"
+                id="habilidadEnsenar"
+                placeholder="Ej: Python"
+            >
+
+            <button onclick="agregarHabilidadEnsenar()">
+                Agregar
+            </button>
+
+            <ul id="listaEnsenar"></ul>
+
+            <h3>Habilidades que quiero aprender</h3>
+
+            <input
+                type="text"
+                id="habilidadAprender"
+                placeholder="Ej: Inglés"
+            >
+
+            <button onclick="agregarHabilidadAprender()">
+                Agregar
+            </button>
+
+            <ul id="listaAprender"></ul>
+
+            <button
+                class="logout"
+                onclick="cerrarSesion()"
+            >
+                Cerrar Sesión
+            </button>
+
+        </div>
+
+    </div>
 
     <script src="js/perfil.js"></script>
 
