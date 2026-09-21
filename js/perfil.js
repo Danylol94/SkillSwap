@@ -178,3 +178,182 @@ if(usuario.foto){
         "fotoPerfil"
     ).src = usuario.foto;
 }
+
+function cargarSolicitudes(){
+
+    const contenedor =
+    document.getElementById(
+        "solicitudesRecibidas"
+    );
+
+    const solicitudes =
+    JSON.parse(
+        localStorage.getItem(
+            "solicitudes"
+        )
+    ) || [];
+
+    const recibidas =
+    solicitudes.filter(
+        solicitud =>
+        solicitud.receptor ===
+        usuario.email
+    );
+
+    contenedor.innerHTML = "";
+
+    recibidas.forEach(
+        solicitud => {
+
+        const div =
+        document.createElement(
+            "div"
+        );
+
+        div.innerHTML = `
+            <p>
+            ${solicitud.emisor}
+            quiere intercambiar
+            conocimientos contigo
+            </p>
+
+            <button
+            onclick="
+            aceptarSolicitud(
+            ${solicitud.id}
+            )">
+            Aceptar
+            </button>
+
+            <button
+            onclick="
+            rechazarSolicitud(
+            ${solicitud.id}
+            )">
+            Rechazar
+            </button>
+
+            <hr>
+        `;
+
+        contenedor
+        .appendChild(div);
+
+    });
+
+}
+
+cargarSolicitudes();
+
+function aceptarSolicitud(id){
+
+    let solicitudes =
+    JSON.parse(
+        localStorage.getItem(
+            "solicitudes"
+        )
+    ) || [];
+
+    const solicitud =
+    solicitudes.find(
+        s => s.id === id
+    );
+
+    solicitud.estado =
+    "aceptada";
+
+    localStorage.setItem(
+        "solicitudes",
+        JSON.stringify(
+            solicitudes
+        )
+    );
+
+    cargarSolicitudes();
+
+    alert(
+        "Solicitud aceptada"
+    );
+}
+
+function rechazarSolicitud(id){
+
+    let solicitudes =
+    JSON.parse(
+        localStorage.getItem(
+            "solicitudes"
+        )
+    ) || [];
+
+    const solicitud =
+    solicitudes.find(
+        s => s.id === id
+    );
+
+    solicitud.estado =
+    "rechazada";
+
+    localStorage.setItem(
+        "solicitudes",
+        JSON.stringify(
+            solicitudes
+        )
+    );
+
+    cargarSolicitudes();
+
+    alert(
+        "Solicitud rechazada"
+    );
+}
+
+function actualizarDashboard(){
+
+    document.getElementById(
+        "totalSkills"
+    ).textContent =
+    usuario.habilidadesEnsenar.length;
+
+    document.getElementById(
+        "totalAprender"
+    ).textContent =
+    usuario.habilidadesAprender.length;
+
+    const solicitudes =
+    JSON.parse(
+        localStorage.getItem(
+            "solicitudes"
+        )
+    ) || [];
+
+    const recibidas =
+    solicitudes.filter(
+        s =>
+        s.receptor === usuario.email &&
+        s.estado === "pendiente"
+    );
+
+    document.getElementById(
+        "totalSolicitudes"
+    ).textContent =
+    recibidas.length;
+}
+
+const menuToggle =
+document.getElementById("menuToggle");
+
+const navLinks =
+document.getElementById("navLinks");
+
+if(menuToggle && navLinks){
+
+    menuToggle.addEventListener(
+        "click",
+        function(){
+
+            navLinks.classList.toggle("active");
+
+        }
+    );
+
+}

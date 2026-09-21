@@ -13,23 +13,36 @@ body{
     display:flex;
     justify-content:space-between;
     align-items:center;
-    padding:20px 60px;
-    background:#1f2937;
+
+    padding:15px 30px;
+
+    background:#ffffff;
+
+    box-shadow:0 2px 10px rgba(0,0,0,.08);
+
+    flex-wrap:wrap;
 }
 
 .logo{
-    color:white;
+    color:#2563eb;
+    font-size:1.8rem;
 }
 
 .nav-links{
     display:flex;
+    gap:25px;
+
     list-style:none;
-    gap:20px;
 }
 
 .nav-links a{
     text-decoration:none;
-    color:white;
+    color:#374151;
+    font-weight:600;
+}
+
+.nav-links a:hover{
+    color:#2563eb;
 }
 
 .hero{
@@ -136,4 +149,31 @@ footer{
     color:white;
     text-align:center;
     padding:20px;
+}
+
+@media (max-width:768px){
+
+    .navbar{
+
+        flex-direction:column;
+
+        gap:15px;
+
+        padding:20px;
+    }
+
+    .nav-links{
+
+        flex-wrap:wrap;
+
+        justify-content:center;
+
+        gap:15px;
+    }
+
+    .nav-links li{
+
+        margin:0;
+    }
+
 }

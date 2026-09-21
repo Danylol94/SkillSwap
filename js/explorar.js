@@ -78,12 +78,13 @@ function buscarUsuarios(){
     </div>
 
     <button
-    class="btn-contactar">
-        Solicitar intercambio
+           class="btn-contactar"
+           onclick="solicitarIntercambio('${usuario.email}')">
+           Solicitar intercambio
     </button>
 
-</div>
-`;
+    </div>
+    `;
 
             resultados.appendChild(
                 card
@@ -92,4 +93,78 @@ function buscarUsuarios(){
 
     });
 
+}
+
+function solicitarIntercambio(emailDestino){
+
+    const usuarioActual =
+    JSON.parse(
+        localStorage.getItem(
+            "usuarioLogueado"
+        )
+    );
+
+    if(!usuarioActual){
+        alert(
+            "Debes iniciar sesión"
+        );
+        return;
+    }
+
+    if(
+        usuarioActual.email ===
+        emailDestino
+    ){
+        alert(
+            "No puedes enviarte solicitudes a ti mismo"
+        );
+        return;
+    }
+
+    let solicitudes =
+    JSON.parse(
+        localStorage.getItem(
+            "solicitudes"
+        )
+    ) || [];
+
+    const existe =
+    solicitudes.find(
+        solicitud =>
+        solicitud.emisor ===
+        usuarioActual.email &&
+        solicitud.receptor ===
+        emailDestino
+    );
+
+    if(existe){
+        alert(
+            "Ya enviaste una solicitud"
+        );
+        return;
+    }
+
+    solicitudes.push({
+        id: Date.now(),
+        emisor:
+        usuarioActual.email,
+        receptor:
+        emailDestino,
+        estado:
+        "pendiente",
+        fecha:
+        new Date()
+        .toLocaleDateString()
+    });
+
+    localStorage.setItem(
+        "solicitudes",
+        JSON.stringify(
+            solicitudes
+        )
+    );
+
+    alert(
+        "Solicitud enviada"
+    );
 }

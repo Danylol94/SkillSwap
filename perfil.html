@@ -9,84 +9,201 @@
 </head>
 <body>
 
-    <div class="perfil-container">
+<nav class="navbar">
 
-        <div class="perfil-card">
+    <div class="logo-section">
 
-            <img
-                id="fotoPerfil"
-                src="https://via.placeholder.com/150"
-                alt="Foto de perfil"
-                class="foto-perfil"
-            >
+        <div class="logo-icon">
+            🚀
+        </div>
 
-            <input
-                type="file"
-                id="fotoInput"
-                accept="image/*"
-            >
+        <h1>SkillSwap</h1>
+    </div>
 
-            <h1 id="nombreUsuario"></h1>
+    <button class="menu-toggle" id="menuToggle">
+                ☰
+    </button>
 
-            <p id="correoUsuario"></p>
+    <div class="nav-links" id="navLinks">
 
-            <textarea
-                id="bio"
-                placeholder="Cuéntanos sobre ti..."
-            ></textarea>
+        <a href="perfil.html">
+            Mi Perfil
+        </a>
 
-            <button onclick="guardarPerfil()">
-                 Guardar Perfil
-            </button>
+        <a href="explorar.html">
+            Explorar
+        </a>
 
-            <h3>Habilidades que enseño</h3>
+        <a href="#">
+            Intercambios
+        </a>
+
+    </div>
+
+    <div class="user-menu">
+
+        <img
+            id="miniAvatar"
+            src="https://via.placeholder.com/40"
+            class="mini-avatar"
+        >
+
+    </div>
+
+</nav>
+
+<div class="dashboard">
+
+    <div class="avatar-container">
+
+    <img
+        id="fotoPerfil"
+        src="https://via.placeholder.com/150"
+        class="avatar"
+    >
+
+    <label
+        for="fotoInput"
+        class="upload-btn">
+        📷
+    </label>
+
+    <input
+        type="file"
+        id="fotoInput"
+        accept="image/*"
+        hidden
+    >
+
+    </div>
+
+    <h2 id="nombreUsuario"></h2>
+
+    <p id="correoUsuario"></p>
+
+    <div class="stats-grid">
+
+        <div class="stat-card">
+            <h3>🚀 Habilidades</h3>
+            <span id="totalSkills">0</span>
+        </div>
+
+        <div class="stat-card">
+            <h3>🎯 Aprendiendo</h3>
+            <span id="totalAprender">0</span>
+        </div>
+
+        <div class="stat-card">
+            <h3>📬 Solicitudes</h3>
+            <span id="totalSolicitudes">0</span>
+        </div>
+
+    </div>
+
+    <div class="section">
+
+        <h3>Mi Biografía</h3>
+
+        <textarea
+            id="bio"
+            placeholder="Cuéntanos quién eres..."
+        ></textarea>
+
+    </div>
+
+    <div class="section">
+
+        <h3>🚀 Puedo enseñar</h3>
+
+        <div class="input-row">
 
             <input
                 type="text"
                 id="habilidadEnsenar"
-                placeholder="Ej: Python"
+                placeholder="Agregar habilidad"
             >
 
-            <button onclick="agregarHabilidadEnsenar()">
-                Agregar
+            <button
+            onclick="agregarHabilidadEnsenar()">
+                +
             </button>
 
-            <ul id="listaEnsenar"></ul>
+        </div>
 
-            <h3>Habilidades que quiero aprender</h3>
+        <div
+            id="listaEnsenar"
+            class="skills-container">
+        </div>
+
+    </div>
+
+    <div class="section">
+
+        <h3>🎯 Quiero aprender</h3>
+
+        <div class="input-row">
 
             <input
                 type="text"
                 id="habilidadAprender"
-                placeholder="Ej: Inglés"
+                placeholder="Agregar habilidad"
             >
 
-            <button onclick="agregarHabilidadAprender()">
-                Agregar
-            </button>
-
-            <ul id="listaAprender"></ul>
-
             <button
-                    onclick="
-                    window.location.href=
-                    'explorar.html'
-                    ">
-                    Explorar Usuarios
+            onclick="agregarHabilidadAprender()">
+                +
             </button>
 
-            <button
-                class="logout"
-                onclick="cerrarSesion()"
-            >
-                Cerrar Sesión
-            </button>
+        </div>
+
+        <div
+            id="listaAprender"
+            class="skills-container">
+        </div>
+
+    </div>
+
+    <div class="section">
+
+        <h3>🏆 Insignias</h3>
+
+        <div class="badges">
+
+            <span class="badge">
+                Perfil Completo
+            </span>
+
+            <span class="badge">
+                Primer Usuario
+            </span>
 
         </div>
 
     </div>
 
-    <script src="js/perfil.js"></script>
+    <div class="section">
+
+        <h3>📬 Solicitudes Recibidas</h3>
+
+        <div id="solicitudesRecibidas"></div>
+
+    </div>
+
+    <button
+        class="save-btn"
+        onclick="guardarPerfil()">
+        Guardar Perfil
+    </button>
+
+    <button
+        class="logout-btn"
+        onclick="cerrarSesion()">
+        Cerrar Sesión
+    </button>
+
+</div>
+
+<script src="js/perfil.js"></script>
 
 </body>
 </html>
